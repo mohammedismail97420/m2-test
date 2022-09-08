@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { overlay } from "../redux/slices/overlaysSlice";
 import Image from "next/image";
 import FlagDropdown from "./FlagDropdown";
-import SearchCommandPalette2 from "./SearchCommandPalette2";
-import SearchCommandPalette from "./SearchCommandPalette";
 import { getCookie } from "cookies-next";
 import useFetch from "../hooks/useFetch";
 import { apis } from "../config/apis";
@@ -20,8 +18,8 @@ const Navbar = () => {
   const conf = useSelector((store) => store.configReducer.config);
   const dispatch = useDispatch();
   const router = useRouter();
-  const lang = conf && conf.language;
-  const dropdownOptions2 = ["DE 19% VAT.", "DE 22% VAT."];
+  const lang = conf?.language;
+  // const dropdownOptions2 = ["DE 19% VAT.", "DE 22% VAT."];
   const currencies = {
     available_currency_codes: ["($) USD", "(€) EUR"],
     base_currency_code: "(€) EUR",
@@ -199,6 +197,16 @@ const Navbar = () => {
     }, [ref]);
   }
 
+  useEffect(() => {
+    conf && console.log("Fetched config", conf);
+  }, [conf]);
+  useEffect(() => {
+    lang && console.log("Fetched lang", lang);
+  }, [lang]);
+  useEffect(() => {
+    langData && console.log("Fetched langData", langData?.brands);
+  }, [langData]);
+
   return (
     <>
       <div>
@@ -309,11 +317,11 @@ const Navbar = () => {
               )}
             </div>
             <div className="md:ml-20 md:mb-0 mb-20 text-12">
-              <Dropdown
+              {/* <Dropdown
                 options={dropdownOptions2}
                 defaultSelected="DE 19% VAT."
                 modifier="Country: "
-              />
+              /> */}
             </div>
             <div
               className="relative flex justify-center items-center md:ml-20 md:mb-0 mb-20 cursor-pointer"

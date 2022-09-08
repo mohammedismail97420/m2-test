@@ -36,3 +36,5 @@ backupSnippets.js
 
 #Webstorm config
 /.idea/
+
+package-lock.json
