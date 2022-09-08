@@ -32,6 +32,7 @@ const SignIn = () => {
       setCookie("_SYS_USER_AUTH", encoded);
       router.push("/account");
       dispatch(overlay(null));
+      alert("Login successfull");
     }
   }, [res]);
 
