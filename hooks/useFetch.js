@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
 
 export default function useFetch(method, url, headers = null, { immediate }) {
   const [res, setRes] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const token = typeof window !== "undefined" && localStorage.getItem("token");
+  const token =
+    typeof window !== "undefined" && window.atob(getCookie("_SYS_ADMIN_AUTH"));
 
   const config =
     headers === "token"

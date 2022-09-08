@@ -1,8 +1,9 @@
 import { Fragment, useState } from "react";
 import { Combobox, Dialog, Transition } from "@headlessui/react";
-import MagnifyingGlassIcon  from "@heroicons/react/solid";
+import MagnifyingGlassIcon from "@heroicons/react/solid";
 import { UsersIcon } from "@heroicons/react/outline";
 import { ChevronRightIcon } from "@heroicons/react/solid";
+import Image from "next/image";
 
 const people = [
   {
@@ -26,8 +27,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -40,8 +40,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -54,8 +53,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -68,8 +66,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -82,8 +79,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -96,8 +92,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -110,8 +105,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -124,8 +118,7 @@ const people = [
     role: "Co-Founder / CEO",
     url: "https://example.com",
     profileUrl: "#",
-    imageUrl:
-      "https://xtwostore-ae01a.web.app/images/cat-1.svg",
+    imageUrl: "https://xtwostore-ae01a.web.app/images/cat-1.svg",
     price: "$198",
     deliveryTime: "1432",
     articleNumber: "263",
@@ -232,10 +225,12 @@ export default function SearchCommandPalette() {
                                 >
                                   {({ active }) => (
                                     <div className="flex gap-30 justify-between w-full items-center my-6">
-                                      <img
+                                      <Image
                                         src={person.imageUrl}
                                         alt=""
-                                        className="h-70 flex-none"
+                                        className="flex-none"
+                                        height="70px"
+                                        width="70px"
                                       />
                                       <div className="flex-auto truncate h-full flex flex-col justify-between">
                                         <span className="ml-3">
@@ -265,10 +260,12 @@ export default function SearchCommandPalette() {
                         {/* {activeOption && (
                           <div className="hidden h-200 w-1/2 flex-none flex-col divide-y divide-darkgray2 overflow-y-auto sm:flex">
                             <div className="flex-none p-6 text-center">
-                              <img
+                              <Image
                                 src={activeOption.imageUrl}
                                 alt=""
                                 className="mx-auto h-45 w-45 rounded-full"
+                                height="45px"
+                                width="45px"
                               />
                               <h2 className="mt-3 font-semibold text-darkgray2">
                                 {activeOption.name}

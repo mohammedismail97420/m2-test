@@ -9,7 +9,6 @@ import FlagDropdown from "./FlagDropdown";
 import { getCookie } from "cookies-next";
 import useFetch from "../hooks/useFetch";
 import { apis } from "../config/apis";
-import "react-loading-skeleton/dist/skeleton.css";
 
 const Navbar = () => {
   const [langData, setLangData] = useState(null);
@@ -265,10 +264,12 @@ const Navbar = () => {
                         className="group flex gap-30 justify-between w-full px-15 py-3 items-center odd:bg-white flex-1 hover:bg-themeBlue transition-all duration-400 cursor-pointer"
                         onClick={() => handleClick(data.link)}
                       >
-                        <img
+                        <Image
                           src={data.imageUrl}
                           alt=""
-                          className="flex-none h-55"
+                          className="flex-none"
+                          height="55px"
+                          width="55px"
                         />
                         <div className="flex-auto truncate flex flex-col justify-between">
                           <a className="ml-3 text-black text-12 font-bold mb-10 group-hover:text-white">
@@ -397,10 +398,12 @@ const Navbar = () => {
                     key={data.imageUrl}
                     className="flex gap-30 justify-between w-full px-15 py-3 items-center my-6 bg-white flex-1 hover:bg-themeBlue divide-1"
                   >
-                    <img
+                    <Image
                       src={data.imageUrl}
                       alt=""
-                      className="flex-none h-55"
+                      className="flex-none"
+                      width="50px"
+                      height="50px"
                     />
                     <div className="flex-auto truncate flex flex-col justify-between">
                       <p className="ml-3 text-black text-12 font-bold mb-10">

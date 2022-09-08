@@ -9,7 +9,7 @@ const FlagDropdown = ({ defaultSelected, modifier, flagsSrc }) => {
       <div className="dropdown py-5 group cursor-pointer relative">
         <div className="dropdownHeading flex items-center">
           {/* {`${modifier ? modifier : ""} `} */}
-          <img src={selected.src} width="50px" height="25px" alt="" />
+          <Image src={selected.src} width="50px" height="25px" alt="" />
           <span>
             <i className="pl-5 fa-solid fa-angle-down"></i>
           </span>

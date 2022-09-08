@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 
 const SearchCommandPalette = () => {
   const all = ["apple", "banana", "mango", "grapes"];
@@ -153,7 +154,13 @@ const SearchCommandPalette = () => {
                 key={data?.name}
                 className="group flex gap-30 justify-between w-full px-15 py-3 items-center odd:bg-white flex-1 hover:bg-themeBlue divide-1"
               >
-                <img src={data.imageUrl} alt="" className="flex-none h-55" />
+                <Image
+                  src={data.imageUrl}
+                  alt=""
+                  className="flex-none"
+                  width="50px"
+                  height="50px"
+                />
                 <div className="flex-auto truncate flex flex-col justify-between">
                   <p className="ml-3 text-black text-12 font-bold mb-10 group-hover:text-white">
                     {data.name}

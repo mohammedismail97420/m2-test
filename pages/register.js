@@ -110,7 +110,6 @@ const Register = () => {
         hasNumber: false,
         didMatch: false,
       });
-      //Scroll to top
     }
     if (res || error) window.scrollTo(0, 0);
   };

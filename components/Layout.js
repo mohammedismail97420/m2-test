@@ -9,6 +9,7 @@ import { apis } from "../config/apis";
 import { getHost, getHostConfig } from "../config/configMethods";
 import { config as conf } from "../redux/slices/configSlice";
 import useFetch from "../hooks/useFetch";
+import { setCookie } from "cookies-next";
 
 const Layout = ({ children }) => {
   const showOverlay = useSelector((store) => store.overlayReducer.overlay);
@@ -24,6 +25,12 @@ const Layout = ({ children }) => {
     false
   );
 
+  //Fetching file config
+  useEffect(() => {
+    const host = getHost(window.location.hostname);
+    setFileConfig(getHostConfig(host));
+  }, []);
+
   //Fetching API config
   const { res: apiConfig, executeFetch: executeConfig } = useFetch(
     "get",
@@ -33,12 +40,6 @@ const Layout = ({ children }) => {
     },
     false
   );
-
-  //Fetching file config
-  useEffect(() => {
-    const host = getHost(window.location.hostname);
-    setFileConfig(getHostConfig(host));
-  }, []);
 
   //Executing token
   useEffect(() => {
@@ -66,9 +67,17 @@ const Layout = ({ children }) => {
     completeConfig && dispatch(conf(completeConfig));
   }, [completeConfig]);
 
-  //Setting token in localstorage
+  //Setting token in cookie
   useEffect(() => {
-    token && localStorage.setItem("token", token?.data);
+    if (token?.status === 200 && token?.data !== null) {
+      const encoded = window.btoa(token.data);
+      setCookie("_SYS_ADMIN_AUTH", encoded);
+    } else {
+      executeToken({
+        password: process.env.NEXT_PUBLIC_PASSWORD,
+        username: process.env.NEXT_PUBLIC_USERNAME,
+      });
+    }
   }, [token]);
 
   return (

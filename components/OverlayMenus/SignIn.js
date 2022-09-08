@@ -28,8 +28,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (res?.status === 200) {
-      const encoded = window.btoa(res?.data);
-      setCookie("_SYS_USER_AUTH", encoded);
+      setCookie("_SYS_USER_AUTH", window.btoa(res?.data));
       router.push("/account");
       dispatch(overlay(null));
       alert("Login successfull");
