@@ -10,7 +10,7 @@ import ProductCard2 from "../components/ProductCard2";
 import { useDispatch, useSelector } from "react-redux";
 import { overlay } from "../redux/slices/overlaysSlice";
 import WriteReview from "../components/WriteReview";
-// import { deleteCookie } from "cookies-next";
+import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/router";
 
 const Account = () => {
@@ -146,7 +146,7 @@ const Account = () => {
   };
 
   const logout = () => {
-    // deleteCookie("_SYS_USER_AUTH");
+    deleteCookie("_SYS_USER_AUTH");
     router.push("/");
   };
 
@@ -1149,17 +1149,17 @@ const Account = () => {
 };
 export default Account;
 
-// export async function getServerSideProps({ req, res }) {
-//   if (!req?.cookies?._SYS_USER_AUTH) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
+export async function getServerSideProps({ req, res }) {
+  if (!req?.cookies?._SYS_USER_AUTH) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-//   return {
-//     props: {}, // will be passed to the page component as props
-//   };
-// }
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import useFetch from "../../hooks/useFetch";
 import { apis } from "../../config/apis";
 import { useEffect } from "react";
-// import { setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const SignIn = () => {
   useEffect(() => {
     if (res?.status === 200) {
       const encoded = window.btoa(res?.data);
-      // setCookie("_SYS_USER_AUTH", encoded);
+      setCookie("_SYS_USER_AUTH", encoded);
       router.push("/account");
       dispatch(overlay(null));
     }

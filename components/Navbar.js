@@ -8,7 +8,7 @@ import Image from "next/image";
 import FlagDropdown from "./FlagDropdown";
 import SearchCommandPalette2 from "./SearchCommandPalette2";
 import SearchCommandPalette from "./SearchCommandPalette";
-// import { getCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 import useFetch from "../hooks/useFetch";
 import { apis } from "../config/apis";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -61,11 +61,11 @@ const Navbar = () => {
       });
   }, [lang]);
 
-  // const cookie = getCookie("_SYS_USER_AUTH");
+  const cookie = getCookie("_SYS_USER_AUTH");
 
   const login = () => {
     setNavActive(false);
-    // cookie ? router.push("/account") : dispatch(overlay("signIn"));
+    cookie ? router.push("/account") : dispatch(overlay("signIn"));
   };
 
   const people = [
