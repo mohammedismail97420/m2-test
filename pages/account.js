@@ -1149,7 +1149,7 @@ const Account = () => {
 };
 export default Account;
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req }) {
   if (!req?.cookies?._SYS_USER_AUTH) {
     return {
       redirect: {

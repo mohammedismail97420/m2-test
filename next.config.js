@@ -3,16 +3,9 @@
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    images: {
-      domains: [
-        "picsum.photos",
-        "xtwostore-ae01a.web.app",
-        "i.ibb.co",
-        "ibb.co",
-      ],
-      unoptimized: true,
-    },
+
+  images: {
+    domains: ["picsum.photos", "xtwostore-ae01a.web.app", "i.ibb.co", "ibb.co"],
   },
 
   localeDetection: false,

@@ -125,7 +125,7 @@ const Index = () => {
                 <Image
                   width="1600px"
                   height="960px"
-                  src="./home/banners/1.png"
+                  src="/home/banners/1.png"
                   alt="Carousel Image"
                   priority
                 />
@@ -134,7 +134,7 @@ const Index = () => {
                 <Image
                   width="1600px"
                   height="960px"
-                  src="./home/banners/1.png"
+                  src="/home/banners/1.png"
                   alt="Carousel Image"
                 />
               </div>
@@ -142,7 +142,7 @@ const Index = () => {
                 <Image
                   width="1600px"
                   height="960px"
-                  src="./home/banners/1.png"
+                  src="/home/banners/1.png"
                   alt="Carousel Image"
                 />
               </div>
@@ -152,7 +152,7 @@ const Index = () => {
             <Image
               width="1200px"
               height="690px"
-              src="./home/banners/2.png"
+              src="/home/banners/2.png"
               alt="Offer"
             />
           </div>
@@ -160,7 +160,7 @@ const Index = () => {
             <Image
               width="1200px"
               height="690px"
-              src="./home/banners/3.png"
+              src="/home/banners/3.png"
               alt="Offer"
             />
           </div>
@@ -288,13 +288,13 @@ const Index = () => {
             <Image
               width="1200px"
               height="450px"
-              src="./home/banners/4.png"
+              src="/home/banners/4.png"
               alt="Offer"
             />
             <Image
               width="1200px"
               height="450px"
-              src="./home/banners/5.png"
+              src="/home/banners/5.png"
               alt="Offer"
             />
           </div>
@@ -303,7 +303,7 @@ const Index = () => {
           <Image
             width="1700px"
             height="420px"
-            src="./home/banners/6.png"
+            src="/home/banners/6.png"
             alt="Banner"
           />
         </div>
@@ -398,13 +398,13 @@ const Index = () => {
           <Image
             width="1200px"
             height="450px"
-            src="./home/banners/7.png"
+            src="/home/banners/7.png"
             alt="Banner"
           />
           <Image
             width="1200px"
             height="450px"
-            src="./home/banners/8.png"
+            src="/home/banners/8.png"
             alt="Banner"
           />
         </div>

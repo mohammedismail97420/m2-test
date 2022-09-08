@@ -91,8 +91,6 @@ const Register = () => {
     //Send form data to API
     conf && (await executeFetch(formData));
     if (res?.status === 200) {
-      //Reset form
-      e.target.reset();
       //Reset form states
       setFormAttributes({
         lastName: "",
@@ -116,11 +114,11 @@ const Register = () => {
 
   useEffect(() => {
     if (res?.status === 200) {
-      alert("Registration successfull");
       router.push("/");
       dispatch(overlay("signIn"));
+      alert("Registration successful");
     }
-  }, [res]);
+  }, [res]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Verify form to enable register button
   // useEffect(() => {
@@ -827,7 +825,7 @@ const Register = () => {
                   type="submit"
                   className="btn w-[100%] rounded-sm uppercase disabled:opacity-[0.6] disabled:cursor-not-allowed"
                 >
-                  {loading ? "Registering..." : "create an account"}
+                  {loading ? "registering..." : "create an account"}
                 </button>
               </div>
             </div>
@@ -839,3 +837,18 @@ const Register = () => {
 };
 
 export default Register;
+
+export async function getServerSideProps({ req }) {
+  if (req?.cookies?._SYS_USER_AUTH) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}

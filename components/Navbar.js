@@ -49,14 +49,14 @@ const Navbar = () => {
 
   useEffect(() => {
     executeFetch();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     lang &&
       import(`../locales/${conf?.language}.json`).then((data) => {
         setLangData(data);
       });
-  }, [lang]);
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const cookie = getCookie("_SYS_USER_AUTH");
 
@@ -199,7 +199,7 @@ const Navbar = () => {
   return (
     <>
       <div>
-        {showTopBar && offerText && (
+        {showTopBar && offerText?.active === true && (
           <div className="bg-themeBlue flex justify-center items-center h-32 relative">
             <div
               className="text-white uppercase text-10 font-medium"
@@ -224,7 +224,7 @@ const Navbar = () => {
                 <Image
                   height="50px"
                   width="150px"
-                  src="../common/xlogo.svg"
+                  src="/common/xlogo.svg"
                   alt="xTWOstore Logo"
                 />
               </div>
@@ -324,7 +324,7 @@ const Navbar = () => {
               <Image
                 width="20px"
                 height="20px"
-                src="../common/navCart.svg"
+                src="/common/navCart.svg"
                 alt="Cart"
               ></Image>
               <div className="flex justify-center items-center text-white absolute top-[-5px] right-[-5px] w-15 h-15 text-12 rounded-[20px] leading-3 select-none bg-themeBlue">
@@ -333,7 +333,7 @@ const Navbar = () => {
             </div>
             <div className="flex justify-center items-center cursor-pointer md:ml-20 md:mb-0 mb-20">
               <Image
-                src="../common/navUser.svg"
+                src="/common/navUser.svg"
                 width="20px"
                 height="20px"
                 alt="User"

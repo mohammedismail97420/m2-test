@@ -221,13 +221,13 @@ const Products = () => {
           <Image
             width="1200px"
             height="450px"
-            src="./home/banners/7.png"
+            src="/home/banners/7.png"
             alt="Banner"
           />
           <Image
             width="1200px"
             height="450px"
-            src="./home/banners/8.png"
+            src="/home/banners/8.png"
             alt="Banner"
           />
         </div>

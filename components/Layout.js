@@ -47,14 +47,14 @@ const Layout = ({ children }) => {
       password: process.env.NEXT_PUBLIC_PASSWORD,
       username: process.env.NEXT_PUBLIC_USERNAME,
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   //Executing API config
   useEffect(() => {
     if (fileConfig !== null && token !== null) {
       executeConfig(null);
     }
-  }, [fileConfig, token]);
+  }, [fileConfig, token]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //Setting complete config
   useEffect(() => {
@@ -65,7 +65,7 @@ const Layout = ({ children }) => {
   //Dispatching complete config
   useEffect(() => {
     completeConfig && dispatch(conf(completeConfig));
-  }, [completeConfig]);
+  }, [completeConfig]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //Setting token in cookie
   useEffect(() => {
@@ -78,7 +78,7 @@ const Layout = ({ children }) => {
         username: process.env.NEXT_PUBLIC_USERNAME,
       });
     }
-  }, [token]);
+  }, [token]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

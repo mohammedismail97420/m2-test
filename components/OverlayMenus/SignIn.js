@@ -31,9 +31,9 @@ const SignIn = () => {
       setCookie("_SYS_USER_AUTH", window.btoa(res?.data));
       router.push("/account");
       dispatch(overlay(null));
-      alert("Login successfull");
+      alert("Login successful");
     }
-  }, [res]);
+  }, [res]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
