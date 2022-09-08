@@ -197,16 +197,6 @@ const Navbar = () => {
     }, [ref]);
   }
 
-  useEffect(() => {
-    conf && console.log("Fetched config", conf);
-  }, [conf]);
-  useEffect(() => {
-    lang && console.log("Fetched lang", lang);
-  }, [lang]);
-  useEffect(() => {
-    langData && console.log("Fetched langData", langData?.brands);
-  }, [langData]);
-
   return (
     <>
       <div>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../hooks/useFetch";
 import { apis } from "../config/apis";
+import { useRouter } from "next/router";
+import { overlay } from "../redux/slices/overlaysSlice";
 
 const Register = () => {
   const [addType, setAddType] = useState("private");
@@ -24,6 +26,8 @@ const Register = () => {
 
   //Fetch config from redux
   const conf = useSelector((store) => store.configReducer.config);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   //Password regex check
   useEffect(() => {
@@ -110,6 +114,15 @@ const Register = () => {
     }
     if (res || error) window.scrollTo(0, 0);
   };
+
+  useEffect(() => {
+    if (res?.status === 200) {
+      clg;
+      alert("Registration successfull");
+      router.push("/");
+      dispatch(overlay("signIn"));
+    }
+  }, [res]);
 
   // Verify form to enable register button
   // useEffect(() => {
