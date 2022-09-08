@@ -47,6 +47,30 @@ export const storeConfigs = {
     },
     store_config: {},
   },
+  "m2-test.vercel.app": {
+    code: "xtwostore_com",
+    language: "en",
+    html: {
+      head: {
+        title: {
+          prefix: "",
+          suffix: "",
+        },
+      },
+    },
+    system: {
+      configUpdate: {
+        store_config: 3600,
+      },
+    },
+    timestamp: {
+      store_config: {
+        first: "",
+        last: "",
+      },
+    },
+    store_config: {},
+  },
   "xtwostore.de": {
     code: "xtwostore_de",
     language: "de",
