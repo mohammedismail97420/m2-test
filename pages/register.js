@@ -117,7 +117,6 @@ const Register = () => {
 
   useEffect(() => {
     if (res?.status === 200) {
-      clg;
       alert("Registration successfull");
       router.push("/");
       dispatch(overlay("signIn"));
