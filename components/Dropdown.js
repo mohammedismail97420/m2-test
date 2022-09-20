@@ -12,7 +12,7 @@ const Dropdown = ({ options, defaultSelected, modifier }) => {
             <i className="pl-5 fa-solid fa-angle-down"></i>
           </span>
         </div>
-        <div className="group-hover:block hidden absolute top-[100%] left-0 md:right-[50%] bg-white text-black text-12 min-w-[150px] shadow-2xl border border-gray z-[2]">
+        <div className="group-hover:block hidden absolute top-[100%] left-0 bg-white text-black text-12 min-w-[150px] shadow-xl border border-gray z-[2] rounded-[5px]">
           {options.map((option) => (
             <div
               key={option}

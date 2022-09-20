@@ -163,7 +163,7 @@ const Products = () => {
     <>
       <section className="commonContainerWithBg">
         <Breadcrumb links={links} active={router.route.substring(1)} />
-        <div className="py-70 px-50 mb-30 bg-[url('https://picsum.photos/1000/300')] bg-no-repeat bg-cover">
+        <div className="py-70 px-50 mb-30 bg-[url('https://dummyimage.com/1000x200/878787/ffffff&text=Non-clickable+1000x200')] bg-no-repeat bg-cover">
           <p className="text-12 text-white">
             The most amazing water experiences
           </p>
@@ -197,7 +197,7 @@ const Products = () => {
               {currentItems.map((data) => (
                 <ProductCard2
                   key={data.title}
-                  img="https://xtwostore-ae01a.web.app/images/prod-img-1.svg"
+                  img="https://dummyimage.com/378x420/878787/ffffff&text=Clickable+378x420"
                   title={data.title}
                   subtitle="Delivery time: approx. 4-3 weeks"
                   price="€679.18"
@@ -221,13 +221,13 @@ const Products = () => {
           <Image
             width="1200px"
             height="450px"
-            src="/home/banners/7.png"
+            src="https://dummyimage.com/1200x450/878787/ffffff.png&text=Clickable+1200x450"
             alt="Banner"
           />
           <Image
             width="1200px"
             height="450px"
-            src="/home/banners/8.png"
+            src="https://dummyimage.com/1200x450/878787/ffffff.png&text=Clickable+1200x450"
             alt="Banner"
           />
         </div>
@@ -244,7 +244,7 @@ const Products = () => {
           <div className="mt-50">
             <Slider {...settings2}>
               <ProductCard
-                img="https://xtwostore-ae01a.web.app/images/prod-img-1.svg"
+                img="https://dummyimage.com/378x420/878787/ffffff&text=Clickable+378x420"
                 title="Wall mounted bidet Standard"
                 subtitle="Delivery time: approx. 4-3 weeks"
                 price="€679.18"
@@ -254,7 +254,7 @@ const Products = () => {
                 tagType="red"
               />
               <ProductCard
-                img="https://xtwostore-ae01a.web.app/images/prod-img-1.svg"
+                img="https://dummyimage.com/378x420/878787/ffffff&text=Clickable+378x420"
                 title="Wall mounted bidet Standard"
                 subtitle="Delivery time: approx. 4-3 weeks"
                 price="€679.18"
@@ -264,7 +264,7 @@ const Products = () => {
                 tagType="red"
               />
               <ProductCard
-                img="https://xtwostore-ae01a.web.app/images/prod-img-1.svg"
+                img="https://dummyimage.com/378x420/878787/ffffff&text=Clickable+378x420"
                 title="Wall mounted bidet Standard"
                 subtitle="Delivery time: approx. 4-3 weeks"
                 price="€679.18"
@@ -274,7 +274,7 @@ const Products = () => {
                 tagType="red"
               />
               <ProductCard
-                img="https://xtwostore-ae01a.web.app/images/prod-img-1.svg"
+                img="https://dummyimage.com/378x420/878787/ffffff&text=Clickable+378x420"
                 title="Wall mounted bidet Standard"
                 subtitle="Delivery time: approx. 4-3 weeks"
                 price="€679.18"
@@ -294,7 +294,7 @@ const Products = () => {
               <Image
                 width="50px"
                 height="50px"
-                src="https://picsum.photos/50"
+                src="https://dummyimage.com/50x50/878787/ffffff&text=No-clickable+50x50"
                 alt="Banner"
               />
             </div>
@@ -319,7 +319,7 @@ const Products = () => {
               <Image
                 width="50px"
                 height="50px"
-                src="https://picsum.photos/50"
+                src="https://dummyimage.com/50x50/878787/ffffff&text=No-clickable+50x50"
                 alt="Banner"
               />
             </div>
@@ -344,7 +344,7 @@ const Products = () => {
               <Image
                 width="50px"
                 height="50px"
-                src="https://picsum.photos/50"
+                src="https://dummyimage.com/50x50/878787/ffffff&text=No-clickable+50x50"
                 alt="Banner"
               />
             </div>

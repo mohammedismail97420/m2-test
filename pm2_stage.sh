@@ -1,1 +1,1 @@
-pm2 start npm --name "m2-fontend" -- run stage
+pm2 start npm --name "m2-stage" -- run stage

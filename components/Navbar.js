@@ -9,57 +9,58 @@ import FlagDropdown from "./FlagDropdown";
 import { getCookie } from "cookies-next";
 import useFetch from "../hooks/useFetch";
 import { apis } from "../config/apis";
+import { config } from "../redux/slices/configSlice";
+import MegaMenu from "./MegaMenu";
+import $ from "jquery";
 
 const Navbar = () => {
   const [langData, setLangData] = useState(null);
   const [showTopBar, setShowTopBar] = useState(true);
   const [navActive, setNavActive] = useState(false);
+  const [countries, setCountries] = useState(null);
   const conf = useSelector((store) => store.configReducer.config);
   const dispatch = useDispatch();
   const router = useRouter();
-  const lang = conf?.language;
+  const [lang, setLang] = useState(null);
   // const dropdownOptions2 = ["DE 19% VAT.", "DE 22% VAT."];
-  const currencies = {
-    available_currency_codes: ["($) USD", "(€) EUR"],
-    base_currency_code: "(€) EUR",
-  };
-  const dropdownOptions3 = ["all categories", "($) USD"];
-  const langFlags = [
-    {
-      src: "/common/flag.webp",
-      title: "De",
-    },
-    {
-      src: "/common/china-flag.png",
-      title: "Ch",
-    },
-    {
-      src: "/common/sigapore.png",
-      title: "En",
-    },
-  ];
 
-  // Offer text block definition
+  const etoken = getCookie("_SYS_ADMIN_AUTH"); //encoded token
+  const token = typeof window !== "undefined" && etoken && window.atob(etoken); //decoded token
+
+  // Offer text block definition-
+  const { res: offerText, executeFetch: executeOffer } = useFetch(
+    "get",
+    `/api/${conf?.code}` + apis?.offer_text_block,
+    { Authorization: `Bearer ${token}` },
+    false
+  );
+
+  // Store currency definition
   const {
-    res: offerText,
-    error,
-    loading,
-    executeFetch,
-  } = useFetch("get", apis?.offer_text_block, "token", false);
+    res: currencies,
+    executeFetch: executeCurrencies,
+    error: currenciesError,
+  } = useFetch("get", "/api/" + conf?.code + apis?.store_currencies, "", false);
 
+  // Fetch stores, currencies, offer text, set language
   useEffect(() => {
-    executeFetch();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    conf?.code && !currencies && executeCurrencies();
+    conf?.code && !offerText && executeOffer();
+    conf?.language && !lang && setLang(conf?.language);
+  }, [token, conf]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  //Fetching language file
   useEffect(() => {
     lang &&
-      import(`../locales/${conf?.language}.json`).then((data) => {
-        setLangData(data);
+      import(`../locales/${conf?.language}/all.js`).then((data) => {
+        setLangData(data?.lang);
       });
   }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  //Fetching customer token
   const cookie = getCookie("_SYS_USER_AUTH");
 
+  //Login
   const login = () => {
     setNavActive(false);
     cookie ? router.push("/account") : dispatch(overlay("signIn"));
@@ -157,7 +158,20 @@ const Navbar = () => {
 
   const search = (e) => {
     const finds = people.filter((element) => {
-      return element.name.toLowerCase().includes(e.target.value);
+      let nameLower = element.name.toLowerCase();
+      let splittedStr = nameLower.split(" ");
+      let flag = 0;
+
+      splittedStr.map((str) => {
+        if (str.startsWith(e.target.value)) {
+          flag = 1;
+        } else {
+          setNoResults(true);
+        }
+      });
+      if (flag) {
+        return element.name;
+      }
     });
 
     if (e.target.value.length > 0) {
@@ -165,13 +179,9 @@ const Navbar = () => {
       setShowResults(true);
     } else {
       setFilter([]);
-      setNoResults(true);
+      setNoResults(false);
       setShowResults(false);
     }
-  };
-
-  const handleBlur = () => {
-    setNoResults(false);
   };
 
   const handleClick = (link) => {
@@ -180,31 +190,22 @@ const Navbar = () => {
     setFilter([]);
   };
 
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          alert("You clicked outside of me!");
-        }
-      }
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
+  const [megaMenu, setMegaMenu] = useState(false);
+
+  const toggleMegaMenu = () => {
+    if (window.innerWidth <= 768) {
+      setMegaMenu(!megaMenu);
+    }
+  };
 
   return (
     <>
       <div>
-        {showTopBar && offerText?.active === true && (
+        {showTopBar && offerText?.data.active === true && (
           <div className="bg-themeBlue flex justify-center items-center h-32 relative">
-            <div
-              className="text-white uppercase text-10 font-medium"
-              dangerouslySetInnerHTML={{ __html: offerText?.data?.content }}
-            ></div>
+            <div className="text-white uppercase text-10 font-medium">
+              {$(offerText?.data?.content).text()}
+            </div>
             <span
               onClick={() => setShowTopBar(!showTopBar)}
               className="text-gray text-10 absolute right-15 cursor-pointer"
@@ -213,7 +214,7 @@ const Navbar = () => {
             </span>
           </div>
         )}
-        <div className="colony"></div>
+
         <nav className="commonContainer bg-navBackground h-70 flex items-center text-white relative select-none">
           <div className="flex justify-between items-center w-[100%] md:w-auto">
             <Link href="/">
@@ -247,63 +248,70 @@ const Navbar = () => {
             <div className="hidden md:block relative flex-1 w-[100%] mb-20 md:mb-0">
               <input
                 type="text"
-                className="border-none outline-none shadow-none bg-navInput text-12 pl-16 pr-26 py-10 w-[100%] placeholder:text-gray text-white"
-                placeholder="Search your products"
+                className={`border-none outline-none shadow-none bg-navInput text-14 caret-5 pl-16 pr-26 py-10 w-full placeholder:text-gray text-white ${
+                  noResults ? "rounded-t-md" : "rounded-md"
+                }`}
+                placeholder={langData?.search_your_products}
                 onChange={search}
               />
               <div className="absolute right-10 top-[50%] transform translate-y-[-50%]">
                 <i className="fa-solid fa-search"></i>
               </div>
 
-              {filter.length !== 0 && showResults && (
-                <div className="absolute top-full z-10 w-[50vw] shadow-md bg-gray">
+              {showResults && (
+                <div
+                  className={`absolute top-full z-10 w-full lg:w-full shadow-md bg-navInput rounded-b-md ${
+                    noResults ? "border-t border-darkgray2" : ""
+                  }`}
+                >
                   {filter.map((data) => {
                     return (
                       <div
                         key={data.link}
-                        className="group flex gap-30 justify-between w-full px-15 py-3 items-center odd:bg-white flex-1 hover:bg-themeBlue transition-all duration-400 cursor-pointer"
+                        className="group flex gap-30 justify-between w-full px-10 py-10 items-center flex-1 hover:bg-themeBlue transition-all duration-400 cursor-pointer"
                         onClick={() => handleClick(data.link)}
                       >
                         <Image
                           src={data.imageUrl}
                           alt=""
-                          className="flex-none"
-                          height="55px"
-                          width="55px"
+                          className="flex-none bg-white"
+                          height="30px"
+                          width="30px"
                         />
                         <div className="flex-auto truncate flex flex-col justify-between">
-                          <a className="ml-3 text-black text-12 font-bold mb-10 group-hover:text-white">
+                          <a className="ml-3 text-12 font-bold mb-10 text-white">
                             {data.name}
                           </a>
-
-                          <p className="group-hover:text-white text-black text-12">{`Article Number: ${data.articleNumber}`}</p>
+                          <p className="text-white text-12">{`Article Number: ${data.articleNumber}`}</p>
                         </div>
                         <div className="flex flex-col justify-between">
                           <p className=" group-hover:text-white text-red text-12 mb-10 font-bold">{`Price: ${data.price}`}</p>
-                          <p className="group-hover:text-white text-black text-12">{`Delivery Time: ${data.deliveryTime}`}</p>
+                          <p className="group-hover:text-white text-12">{`Delivery Time: ${data.deliveryTime}`}</p>
                         </div>
                       </div>
                     );
                   })}
+                  {filter.length === 0 && noResults && (
+                    <div className="h-[50vh] flex flex-col justify-center items-center">
+                      <p className="mt-4 font-semibold text-25">
+                        No results found!
+                      </p>
+                      <p className="mt-2 text-gray-500">
+                        No itmes found for this search term. Please try again.
+                      </p>
+                    </div>
+                  )}
                 </div>
-              )}
-              {noResults && (
-                <p className="text-red absolute top-full bg-white">
-                  No result found!
-                </p>
               )}
             </div>
             <div className="md:ml-20 md:mb-0 mb-20 text-12">
-              <FlagDropdown
-                flagsSrc={langFlags}
-                defaultSelected={langFlags[0]}
-              />
+              <FlagDropdown />
             </div>
             <div className="md:ml-20 md:mb-0 mb-20 text-12">
               {currencies && (
                 <Dropdown
-                  options={currencies.available_currency_codes}
-                  defaultSelected={currencies.base_currency_code}
+                  options={currencies?.data.available_currency_codes}
+                  defaultSelected={currencies?.data.base_currency_code}
                 />
               )}
             </div>
@@ -343,83 +351,130 @@ const Navbar = () => {
           </div>
         </nav>
 
-        <div className="commonContainer justify-between bg-white hidden md:flex">
-          <div className="uppercase text-12 font-bold text-themeBlue py-15">
-            <Dropdown
-              options={dropdownOptions3}
-              defaultSelected="all categories"
-            />
-          </div>
-          <div className="w-1 bg-darkgray my-20"></div>
-          <Link href={"#"}>
-            <a className="uppercase text-12 font-bold text-black py-20">
-              {langData?.brands}
-            </a>
-          </Link>
-          <Link href={"#"}>
-            <a className="uppercase text-12 font-bold text-black py-20">
-              {langData?.bathroom}
-            </a>
-          </Link>
-          <Link href={"#"}>
-            <a className="uppercase text-12 font-bold text-black py-20">
-              {langData?.kitchen}
-            </a>
-          </Link>
-          <Link href={"#"}>
-            <a className="uppercase text-12 font-bold text-black py-20">
-              {langData?.sales}
-            </a>
-          </Link>
-          <Link href={"#"}>
-            <a className="uppercase text-12 font-bold text-black py-20">
-              {langData?.duravit}
-            </a>
-          </Link>
-          <Link href={"#"}>
-            <a className="uppercase text-12 font-bold text-black py-20">
-              {langData?.villeroy_and_boch}
-            </a>
-          </Link>
-        </div>
-        <div className="block md:hidden  relative flex-1 w-[100%] mb-0 md:mb-0">
+        <div className="block md:hidden relative flex-1 w-[100%] mb-0 md:mb-0">
           <input
             type="text"
-            className="border-none outline-none shadow-none bg-navInput text-12 pl-16 pr-26 py-15 md:py-10 w-[100%] placeholder:text-gray text-white"
+            className="border-none outline-none shadow-none bg-navInput text-12 pl-16 pr-26 py-15 md:py-10 w-full placeholder:text-gray text-white"
             placeholder="Search your products"
             onChange={search}
           />
           <i className="fa-solid fa-magnifying-glass absolute right-10 top-[50%] transform translate-y-[-50%] text-12 text-gray"></i>
-          {filter.length !== 0 && showResults && (
-            <div className="absolute top-full z-20 w-full bg-white shadow-md">
+          {showResults && (
+            <div
+              className={`absolute top-full z-20 w-full bg-navInput shadow-md ${
+                noResults ? "border-t border-darkgray2" : ""
+              }`}
+            >
               {filter.map((data) => {
                 return (
                   <div
                     key={data.imageUrl}
-                    className="flex gap-30 justify-between w-full px-15 py-3 items-center my-6 bg-white flex-1 hover:bg-themeBlue divide-1"
+                    className="flex gap-30 justify-between w-full px-15 py-3 items-center my-6 bg-navInput flex-1 hover:bg-themeBlue divide-1"
                   >
                     <Image
                       src={data.imageUrl}
                       alt=""
-                      className="flex-none"
+                      className="flex-none bg-white"
                       width="50px"
                       height="50px"
                     />
                     <div className="flex-auto truncate flex flex-col justify-between">
-                      <p className="ml-3 text-black text-12 font-bold mb-10">
+                      <p className="ml-3 text-white text-12 font-bold mb-10">
                         {data.name}
                       </p>
-                      <p className=" text-black text-12">{`Article Number: ${data.articleNumber}`}</p>
+                      <p className=" text-white text-12">{`Article Number: ${data.articleNumber}`}</p>
                     </div>
                     <div className="flex flex-col justify-between">
                       <p className="text-red text-12 mb-10 font-bold">{`Price: ${data.price}`}</p>
-                      <p className=" text-black text-12">{`Delivery Time: ${data.deliveryTime}`}</p>
+                      <p className=" text-white text-12">{`Delivery Time: ${data.deliveryTime}`}</p>
                     </div>
                   </div>
                 );
               })}
+              {filter.length === 0 && noResults && (
+                <div className="h-[50vh] flex flex-col items-center text-white px-25 text-center">
+                  <p className="mt-4 font-semibold text-25">
+                    No results found!
+                  </p>
+                  <p className="mt-2">
+                    No components found for this search term. Please try again.
+                  </p>
+                </div>
+              )}
             </div>
           )}
+          {/* {noResults && (
+            <p className="text-red absolute top-full bg-white w-full p-5 shadow-md">
+              No result found!
+            </p>
+          )} */}
+        </div>
+        <div className="relative commonContainer justify-between bg-white flex flex-col md:flex-row md:gap-30 md:items-strech">
+          <div
+            className="uppercase text-12 font-bold text-themeBlue flex items-center cursor-pointer"
+            onMouseOver={() => setMegaMenu(true)}
+            onMouseOut={() => setMegaMenu(false)}
+          >
+            {/* {dropdownOptions3 && (
+              <Dropdown
+                options={dropdownOptions3}
+                defaultSelected={dropdownOptions3[0]}
+              />
+            )} */}
+
+            <p
+              type="button"
+              className="relative whitespace-nowrap"
+              onClick={toggleMegaMenu}
+            >
+              {langData?.all_categories}
+              <span>
+                <i className="pl-5 fa-solid fa-angle-down"></i>
+              </span>
+            </p>
+
+            {/* MegaMenu */}
+            {megaMenu && <MegaMenu />}
+
+            {/* MegaMenu ends */}
+          </div>
+
+          <div className="hidden md:block h-full w-2 text-lightgray self-center">
+            |
+          </div>
+
+          <div className="grid grid-cols-2 md:flex md:justify-between w-full">
+            <Link href={"/categories/brands"}>
+              <a className="uppercase text-12 font-bold text-black py-5 md:py-20">
+                {langData?.brands}
+              </a>
+            </Link>
+            <Link href={"/categories/bathroom"}>
+              <a className="uppercase text-12 font-bold text-black py-5 md:py-20">
+                {langData?.bathroom}
+              </a>
+            </Link>
+            <Link href={"/categories/kitchen"}>
+              <a className="uppercase text-12 font-bold text-black py-5 md:py-20">
+                {langData?.kitchen}
+              </a>
+            </Link>
+            <Link href={"/categories/sales"}>
+              <a className="uppercase text-12 font-bold text-black py-5 md:py-20">
+                {langData?.sales}
+              </a>
+            </Link>
+            <Link href={"/categories/duravit"}>
+              <a className="uppercase text-12 font-bold text-black py-5 md:py-20">
+                {langData?.duravit}
+              </a>
+            </Link>
+            <Link href={"/categories/villeroy-and-boch"}>
+              <a className="uppercase text-12 font-bold text-black py-5 md:py-20">
+                {langData?.villeroy_and_boch}
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
     </>

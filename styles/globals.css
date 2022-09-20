@@ -35,7 +35,7 @@ body {
 
     .commonContainer,
     .commonContainerWithBg {
-        @apply pl-[6vw] pr-[8vw];
+        @apply pl-[7vw] pr-[7vw];
     }
 }
 

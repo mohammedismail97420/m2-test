@@ -71,7 +71,14 @@ const ProductCard = ({
           )}
         </div>
 
-        <i className="absolute bottom-30 right-30 text-themeBlue fa-solid fa-bag-shopping"></i>
+        <button className="absolute bottom-30 right-30">
+          <Image
+            src="/common/shopping-bag-blue.svg"
+            width="16px"
+            height="16px"
+            alt=""
+          />
+        </button>
       </div>
     </div>
   );

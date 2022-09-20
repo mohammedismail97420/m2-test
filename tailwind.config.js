@@ -18,6 +18,8 @@ module.exports = {
       themeBlue: "#0E66B4",
       themeBlueLight: "#cadbeb",
       themePink: "#eb4d4b",
+      inputBg: "#fafafa",
+      inputBorder: "#D7D7D7",
       white: "#fff",
       white2: "#f7f7f7",
       black: "#000",

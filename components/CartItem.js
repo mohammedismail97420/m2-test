@@ -7,7 +7,7 @@ const CartItem = () => {
           <Image
             width="80px"
             height="80px"
-            src="https://picsum.photos/80"
+            src="https://dummyimage.com/80x80/878787/ffffff&text=clickable+80x80"
             alt="Cart Item"
           />
         </span>

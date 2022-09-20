@@ -119,11 +119,11 @@ const ProductsSidebar = () => {
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-5 pb-10">
-        <button className="bg-cardBg px-5 xl:px-20 py-10 border border-darkgray text-12 flex-1">
+        <button className="bg-cardBg px-5 xl:px-20 py-10 border border-darkgray text-12 flex-1 rounded-sm">
           <i className="fa-solid fa-sliders pr-10"></i>
           <span>Hide Filters</span>
         </button>
-        <button className="bg-themeBlue px-5 py-10 text-white text-12 flex-1">
+        <button className="bg-themeBlue px-5 py-10 text-white text-12 flex-1 rounded-sm">
           <i className="fa-solid fa-xmark pr-10"></i>
           <span>Clear Filters</span>
         </button>

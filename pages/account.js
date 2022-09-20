@@ -297,7 +297,7 @@ const Account = () => {
 
                   <table className="hidden md:table md:w-[150%] lg:w-full text-14 mt-30 overflow-x-scroll">
                     <thead className="font-semibold">
-                      <tr className="border-b-[1px] border-b-grey">
+                      <tr className="border-b-[0.5px]">
                         <td className="pb-10">Order #</td>
                         <td className="pb-10">Date</td>
                         <td className="pb-10">Ship to</td>
@@ -307,7 +307,7 @@ const Account = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b-[1px] border-b-grey">
+                      <tr className="border-b-[0.5px] border-b-grey">
                         <td className="py-10 font-medium">10110100112</td>
                         <td className="py-10 font-medium">06/10/2022</td>
                         <td className="py-10 font-medium">Benjamin Farmer</td>
@@ -646,14 +646,14 @@ const Account = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-b-[1px] border-darkGrey">
+                        <tr className="border-b-[0.5px] border-darkGrey">
                           <td className="py-20">
                             <div className="flex">
                               <div className="mr-20">
                                 <Image
                                   width="75px"
                                   height="75px"
-                                  src="https://picsum.photos/100"
+                                  src="https://dummyimage.com/75x75/878787/ffffff&text=Non-clickable+75x75"
                                   alt="Product"
                                 />
                               </div>
@@ -684,14 +684,14 @@ const Account = () => {
                             View Product
                           </td>
                         </tr>
-                        <tr className="border-b-[1px] border-darkGrey">
+                        <tr className="border-b-[0.5px] border-darkGrey">
                           <td className="py-20">
                             <div className="flex">
                               <div className="mr-20">
                                 <Image
                                   width="75px"
                                   height="75px"
-                                  src="https://picsum.photos/100"
+                                  src="https://dummyimage.com/75x75/878787/ffffff&text=Non-clickable+75x75"
                                   alt="Product"
                                 />
                               </div>
@@ -733,7 +733,7 @@ const Account = () => {
                             <Image
                               width="75px"
                               height="75px"
-                              src="https://picsum.photos/100"
+                              src="https://dummyimage.com/75x75/878787/ffffff&text=Non-clickable+75x75"
                               alt="Product"
                             />
                           </div>
@@ -797,7 +797,7 @@ const Account = () => {
                   <div className="w-[100%] mt-20 scrollbar-thin scrollbar-thumb-themeBlue scrollbar-track-themeBlueLight overflow-x-auto">
                     <table className="hidden w-[150%] lg:w-[100%] md:table">
                       <thead>
-                        <tr className="font-semibold border-b-[1px] border-darkGrey">
+                        <tr className="font-semibold border-b-[0.5px] border-darkGrey">
                           <td className="pb-10">Product</td>
                           <td className="pb-10">Price</td>
                           <td className="pb-10">Status</td>
@@ -806,14 +806,14 @@ const Account = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-b-[1px] border-darkGrey">
+                        <tr className="border-b-[0.5px] border-darkGrey">
                           <td className="py-20">
                             <div className="flex">
                               <div className="mr-20">
                                 <Image
                                   width="75px"
                                   height="75px"
-                                  src="https://picsum.photos/100"
+                                  src="https://dummyimage.com/75x75/878787/ffffff&text=Non-clickable+75x75"
                                   alt="Product"
                                 />
                               </div>
@@ -844,14 +844,14 @@ const Account = () => {
                             View Product
                           </td>
                         </tr>
-                        <tr className="border-b-[1px] border-darkGrey">
+                        <tr className="border-b-[0.5px] border-darkGrey">
                           <td className="py-20">
                             <div className="flex">
                               <div className="mr-20">
                                 <Image
                                   width="75px"
                                   height="75px"
-                                  src="https://picsum.photos/100"
+                                  src="https://dummyimage.com/75x75/878787/ffffff&text=Non-clickable+75x75"
                                   alt="Product"
                                 />
                               </div>
@@ -973,7 +973,7 @@ const Account = () => {
                   {currentPosts.map((data) => (
                     <ProductCard2
                       key={data.title}
-                      img="https://xtwostore-ae01a.web.app/images/prod-img-1.svg"
+                      img="https://dummyimage.com/700x700/878787/ffffff&text=Clickable+700x700"
                       title={data.title}
                       subtitle="Delivery time: approx. 4-3 weeks"
                       price="€679.18"

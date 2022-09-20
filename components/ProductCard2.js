@@ -12,14 +12,17 @@ const ProductCard2 = ({
   discount,
   rating,
   tagType,
-  wishList,
 }) => {
+  const [wishList, setWishList] = useState(false);
+  const addToWishList = () => {
+    setWishList(!wishList);
+  };
   const [rate, setRate] = useState(null);
 
   useEffect(() => setRate(parseFloat(Math.floor(rating))), [rating]);
 
   return (
-    <div className="md:px-10">
+    <div className="">
       <div className="p-30 bg-white relative">
         <div className="mx-auto">
           <Image width="400px" height="400px" src={img} alt="Product" />
@@ -28,6 +31,7 @@ const ProductCard2 = ({
           <a className="font-bold mb-10">{title}</a>
         </Link>
         <p className="text-12 font-medium mb-10">{subtitle}</p>
+        <p className="text-12 mb-8">Article No: DS2364T0986</p>
         <div className="font-sans">
           <span className="mr-10 text-themeBlue font-bold">{price}</span>
           <span className="line-through text-red2 font-bold mr-5">
@@ -68,24 +72,32 @@ const ProductCard2 = ({
           <Image
             width="30px"
             height="30px"
-            src="https://picsum.photos/30"
+            src="https://dummyimage.com/30x30/ffffff/000000&text=Brand+30x30"
             alt="Product Brand"
           />
         </div>
         <div className="flex mt-15">
-          <button className="bg-themeBlue text-white py-5 w-[100%] rounded-[3px] mr-10">
-            <i className="fa-solid fa-bag-shopping"></i>
+          <button className="bg-themeBlue text-white px-5 py-3 w-[100%] rounded-[3px] mr-10">
+            <Image
+              src="/common/shopping-bag.svg"
+              width="16px"
+              height="16px"
+              alt=""
+            />
           </button>
           <button
             className={`w-[100%] ml-10 rounded-[3px] ${
-              wishList ? "bg-lightRed" : "bg-white border border-darkgray"
+              wishList
+                ? "bg-lightRed px-8 py-5"
+                : "bg-white border border-darkgray px-7 py-4"
             }`}
+            onClick={addToWishList}
           >
-            {wishList ? (
-              <i className="fa-solid fa-heart text-red cursor-pointer"></i>
-            ) : (
-              <i className="fa-regular fa-heart cursor-pointer"></i>
-            )}
+            <i
+              className={`fa-regular fa-heart cursor-pointer ${
+                wishList ? "fa-solid fa-heart text-red" : "fa-regular fa-heart"
+              }`}
+            ></i>
           </button>
         </div>
       </div>

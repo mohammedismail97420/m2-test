@@ -1,5 +1,5 @@
-Run npm run dev to start the project
+ENV:
+ADMIN_PASSWORD=<PASSWORD>
+ADMIN_USERNAME=<USERNAME>
 
-Make sure to create .env.local and add a variable named "API_BASE_URL" and assign the API base URL to it.
-
-New Line
+Replace content within angular brackets with actual credentials.

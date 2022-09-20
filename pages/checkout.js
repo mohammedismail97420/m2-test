@@ -105,7 +105,7 @@ const Checkout = () => {
               <h3 className="text-16 font-medium mt-20">Shipping Address</h3>
               <form action="">
                 <div className="grid grid-cols-2 gap-20">
-                  <div className="flex bg-cardBg border border-darkgray rounded-[4px] mt-15">
+                  <div className="flex bg-cardBg border-darkgray mt-15 border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md">
                     <input
                       className="ml-10"
                       type="radio"
@@ -121,7 +121,7 @@ const Checkout = () => {
                       Private
                     </label>
                   </div>
-                  <div className="flex bg-cardBg border border-darkgray rounded-[4px] mt-15">
+                  <div className="flex bg-cardBg border-darkgray mt-15 border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md">
                     <input
                       className="ml-10"
                       type="radio"
@@ -143,7 +143,7 @@ const Checkout = () => {
                       First name
                     </label>
                     <input
-                      className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                      className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                       type="text"
                     />
                   </div>
@@ -152,7 +152,7 @@ const Checkout = () => {
                       Last name
                     </label>
                     <input
-                      className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                      className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                       type="text"
                     />
                   </div>
@@ -162,7 +162,7 @@ const Checkout = () => {
                     Email address*
                   </label>
                   <input
-                    className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                    className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                     type="text"
                   />
                 </div>
@@ -172,7 +172,7 @@ const Checkout = () => {
                       Company
                     </label>
                     <input
-                      className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                      className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                       type="text"
                     />
                   </div>
@@ -182,7 +182,7 @@ const Checkout = () => {
                     House # and Street name*
                   </label>
                   <input
-                    className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                    className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                     type="text"
                   />
                 </div>
@@ -193,7 +193,7 @@ const Checkout = () => {
                         VAT ID number
                       </label>
                       <select
-                        className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                        className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                         name=""
                         id=""
                       >
@@ -206,7 +206,7 @@ const Checkout = () => {
                       Zip/Postal code*
                     </label>
                     <select
-                      className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                      className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                       name=""
                       id=""
                     >
@@ -219,7 +219,7 @@ const Checkout = () => {
                         City*
                       </label>
                       <select
-                        className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                        className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                         name=""
                         id=""
                       >
@@ -234,7 +234,7 @@ const Checkout = () => {
                       Country*
                     </label>
                     <select
-                      className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                      className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                       name=""
                       id=""
                     >
@@ -246,7 +246,7 @@ const Checkout = () => {
                       State/Province
                     </label>
                     <select
-                      className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                      className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                       name=""
                       id=""
                     >
@@ -259,7 +259,7 @@ const Checkout = () => {
                     Mobile or Telephone #
                   </label>
                   <input
-                    className="w-[100%] px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg"
+                    className="w-[100%] px-10 py-9 border-darkgray text-14 outline-none mt-5 bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
                     type="text"
                   />
                 </div>
@@ -278,7 +278,7 @@ const Checkout = () => {
           )}
           <hr className="text-darkgray mt-30" />
           <h3 className="mt-20 mb-10 font-medium">Shipping Method</h3>
-          <div className="flex bg-cardBg border border-darkgray rounded-[4px] mt-15">
+          <div className="flex bg-cardBg border-darkgray mt-15 border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md">
             <input
               className="ml-10"
               type="radio"
@@ -293,7 +293,7 @@ const Checkout = () => {
               <span>$6.00</span>
             </label>
           </div>
-          <div className="flex bg-cardBg border border-darkgray rounded-[4px] mt-15">
+          <div className="flex bg-cardBg border-darkgray border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md mt-15">
             <input
               className="ml-10"
               type="radio"
@@ -308,7 +308,7 @@ const Checkout = () => {
               <span>$8.00</span>
             </label>
           </div>
-          <div className="flex bg-cardBg border border-darkgray rounded-[4px] mt-15">
+          <div className="flex bg-cardBg border-darkgray border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md mt-15">
             <input
               className="ml-10"
               type="radio"
@@ -324,7 +324,7 @@ const Checkout = () => {
             </label>
           </div>
           <hr className="text-darkgray mt-30" />
-          <h3 className="mt-20 mb-10 font-medium">graythod</h3>
+          <h3 className="mt-20 mb-10 font-medium">Payment Method</h3>
           <div className="flex flex-col sm:flex-row sm:justify-between">
             <div className="mb-10 sm:mb-0 flex ">
               <input name="payMet" className="mr-5" type="radio" id="cc" />
@@ -345,7 +345,7 @@ const Checkout = () => {
               </label>
             </div>
           </div>
-          <div className="flex bg-cardBg border border-darkgray rounded-[4px] mt-15">
+          <div className="flex bg-cardBg border-darkgray border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md mt-15">
             <input className="ml-20" type="radio" id="cc1" name="shipping" />
             <label
               className="ml-20 font-medium text-14 flex-1 py-15 pr-10 flex justify-between"
@@ -361,13 +361,13 @@ const Checkout = () => {
                 <Image
                   width="50px"
                   height="30px"
-                  src="https://picsum.photos/50"
+                  src="https://dummyimage.com/50x30/878787/ffffff&text=50x30"
                   alt="Credit Card"
                 />
               </span>
             </label>
           </div>
-          <div className="flex bg-cardBg border border-darkgray rounded-[4px] mt-15">
+          <div className="flex bg-cardBg border-darkgray border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md mt-15">
             <input className="ml-20" type="radio" id="cc2" name="shipping" />
             <label
               className="ml-20 font-medium text-14 flex-1 py-15 pr-10 flex justify-between"
@@ -383,7 +383,7 @@ const Checkout = () => {
                 <Image
                   width="50px"
                   height="30px"
-                  src="https://picsum.photos/50"
+                  src="https://dummyimage.com/50x30/878787/ffffff&text=50x30"
                   alt="Credit Card"
                 />
               </span>
@@ -420,7 +420,7 @@ const Checkout = () => {
             <div className="relative">
               <input
                 type="text"
-                className="py-10 text-14 pl-10 pr-100 w-[100%] border border-darkgray outline-none bg-cardBg rounded-[3px]"
+                className="py-10 text-14 pl-10 pr-100 w-[100%] border-darkgray outline-none bg-cardBg border-[1.5px] rounded-[4px] shadow-sm focus:shadow-md"
               />
               <button className="absolute top-[50%] translate-y-[-50%] right-10 uppercase font-semibold text-themeBlue text-14">
                 apply code

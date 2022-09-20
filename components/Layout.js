@@ -9,21 +9,27 @@ import { apis } from "../config/apis";
 import { getHost, getHostConfig } from "../config/configMethods";
 import { config as conf } from "../redux/slices/configSlice";
 import useFetch from "../hooks/useFetch";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 
 const Layout = ({ children }) => {
   const showOverlay = useSelector((store) => store.overlayReducer.overlay);
   const dispatch = useDispatch();
   const [fileConfig, setFileConfig] = useState(null);
   const [completeConfig, setCompleteConfig] = useState(null);
+  const [token, setToken] = useState(null);
+
+  //Get token from cookie
+  useEffect(() => {
+    setToken(window.atob(getCookie("_SYS_ADMIN_AUTH")));
+  }, []);
 
   //Fetching token
-  const { res: token, executeFetch: executeToken } = useFetch(
-    "post",
-    apis?.admin_bearer_token,
-    null,
-    false
-  );
+  // const { res: token, executeFetch: executeToken } = useFetch(
+  //   "post",
+  //   apis?.admin_bearer_token,
+  //   null,
+  //   false
+  // );
 
   //Fetching file config
   useEffect(() => {
@@ -36,18 +42,19 @@ const Layout = ({ children }) => {
     "get",
     apis?.get_store_config + fileConfig?.code,
     {
-      Authorization: `Bearer ${token?.data}`,
+      Authorization: `Bearer ${token}`,
     },
     false
   );
 
   //Executing token
-  useEffect(() => {
-    executeToken({
-      password: process.env.NEXT_PUBLIC_PASSWORD,
-      username: process.env.NEXT_PUBLIC_USERNAME,
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   token !== null &&
+  //     executeToken({
+  //       password: process.env.NEXT_PUBLIC_PASSWORD,
+  //       username: process.env.NEXT_PUBLIC_USERNAME,
+  //     });
+  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   //Executing API config
   useEffect(() => {
@@ -68,17 +75,24 @@ const Layout = ({ children }) => {
   }, [completeConfig]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //Setting token in cookie
-  useEffect(() => {
-    if (token?.status === 200 && token?.data !== null) {
-      const encoded = window.btoa(token.data);
-      setCookie("_SYS_ADMIN_AUTH", encoded);
-    } else {
-      executeToken({
-        password: process.env.NEXT_PUBLIC_PASSWORD,
-        username: process.env.NEXT_PUBLIC_USERNAME,
-      });
-    }
-  }, [token]); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   if (token?.status === 200 && token?.data !== null) {
+  //     const encoded = window.btoa(token.data);
+  //     setCookie("_SYS_ADMIN_AUTH", encoded);
+  //   } else {
+  //     executeToken({
+  //       password: process.env.NEXT_PUBLIC_PASSWORD,
+  //       username: process.env.NEXT_PUBLIC_USERNAME,
+  //     });
+  //   }
+  // }, [token]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // useEffect(() => {
+  //   token && console.log(token);
+  //   fileConfig && console.log(fileConfig);
+  //   apiConfig && console.log(apiConfig);
+  //   completeConfig && console.log(completeConfig);
+  // }, [token, fileConfig, apiConfig, completeConfig]);
 
   return (
     <>

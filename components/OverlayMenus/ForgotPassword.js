@@ -18,18 +18,9 @@ const ForgotPassword = () => {
       <OverlayMenu>
         <h1 className="text-24 font-bold mt-10">Forgot your password?</h1>
         <p className="text-14 italic mt-10">
-          Please enter the following information to create your account.
+          Please enter your registered email address to reset password.
         </p>
 
-        <div className="ml-14 mt-10">
-          <label
-            className="relative font-medium text-14 w-auto"
-            htmlFor="email"
-          >
-            Required Fields
-            <span className="absolute -left-16 -top-8 text-36 text-red">*</span>
-          </label>
-        </div>
         <br />
         <form onSubmit={handleSubmit}>
           <div>
@@ -38,21 +29,17 @@ const ForgotPassword = () => {
               htmlFor="email"
             >
               Email Address
-              <span className="absolute -right-16 -top-8 text-36 text-red">
-                *
-              </span>
             </label>
           </div>
           <input
-            type="email"
-            className="bg-cardBg border border-darkGrey rounded-sm outline-none text-14 p-10 w-[100%] mt-5 mb-10"
-            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            type="text"
+            className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
             title="enter a valid email address"
             required
           />
 
           <button
-            className="btn w-[100%] my-10 text-14 font-semibold"
+            className="btn w-[100%] text-16 font-semibold rounded-[4px] mt-15"
             type="submit"
           >
             Submit

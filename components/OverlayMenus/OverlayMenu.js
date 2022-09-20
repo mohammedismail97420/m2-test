@@ -10,7 +10,7 @@ const OverlayMenu = ({ children }) => {
   }, []);
 
   return (
-    <div className="flex absolute top-[-58px] bottom-[0] w-[100%] left-0 right-0 z-[20] max-h-[95vh] overflow-y-scroll">
+    <div className="flex absolute top-[-58px] bottom-[0] w-[100%] left-0 right-0 z-[20] overflow-y-scroll">
       <div
         className="flex-1 hidden sm:block bg-black bg-opacity-50"
         onClick={() => dispatch(overlay(null))}

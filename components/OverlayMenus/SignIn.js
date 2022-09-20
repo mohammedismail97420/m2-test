@@ -27,11 +27,10 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (res?.status === 200) {
+    if (res?.status === 200 && res?.data) {
       setCookie("_SYS_USER_AUTH", window.btoa(res?.data));
       router.push("/account");
       dispatch(overlay(null));
-      alert("Login successful");
     }
   }, [res]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -39,8 +38,6 @@ const SignIn = () => {
     <div>
       <OverlayMenu>
         <h1 className="text-24 font-bold mt-10 uppercase">Sign In</h1>
-        <small>Password details are case sensitive.</small>
-        <br />
         <br />
         {error && (
           <div className="bg-[#f2dede] text-[#ba5f55] font-semibold rounded-sm px-10 py-15">
@@ -49,67 +46,64 @@ const SignIn = () => {
           </div>
         )}
         <br />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-22">
           <div>
-            <label
-              className="relative font-medium text-14 w-auto"
-              htmlFor="email"
-            >
-              Email Address
-              <span className="absolute -right-16 -top-8 text-36 text-red">
-                *
-              </span>
-            </label>
+            <div>
+              <label
+                className="relative font-medium text-16 w-auto"
+                htmlFor="email"
+              >
+                Email Address
+                <span className="absolute -right-8 -top-5 text-22">*</span>
+              </label>
+            </div>
+            <input
+              type="text"
+              className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
+              required
+              name="email"
+            />
           </div>
-          <input
-            type="email"
-            className="bg-cardBg border border-darkGrey rounded-sm outline-none text-14 p-10 w-[100%] mt-5 mb-10"
-            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-            title="enter a valid email address"
-            required
-            name="email"
-          />
+
           <div>
-            <label
-              className="relative font-medium text-14 w-auto"
-              htmlFor="password"
-            >
-              Password
-              <span className="absolute -right-16 -top-8 text-36 text-red">
-                *
-              </span>
-            </label>
+            <div>
+              <label
+                className="relative font-medium text-16 w-auto"
+                htmlFor="password"
+              >
+                Password
+                <span className="absolute -right-8 -top-5 text-22">*</span>
+              </label>
+            </div>
+            <input
+              type="text"
+              className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
+              required
+              name="password"
+            />
           </div>
-          <input
-            type="password"
-            className="bg-cardBg border border-darkGrey rounded-sm outline-none text-14 p-10 w-[100%] mt-5 mb-10"
-            required
-            name="password"
-          />
 
           <button
-            className="btn w-[100%] my-10 text-14 font-semibold"
+            className="btn w-[100%] text-16 font-semibold rounded-[4px] mt-8"
             type="submit"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>
 
-          <div className="w-[100%] text-center flex flex-col">
+          <a
+            onClick={() => dispatch(overlay("forgotPassword"))}
+            className="mx-auto text-16 font-semibold cursor-pointer"
+          >
+            Forgot your password?
+          </a>
+          <Link href="/register" className="w-[100%]">
             <a
-              onClick={() => dispatch(overlay("forgotPassword"))}
-              className="mx-auto text-14 font-semibold cursor-pointer"
+              onClick={() => dispatch(overlay(null))}
+              className="btn-border border-themeBlueLight bg-inputBg text-center text-14 font-semibold rounded-[4px]"
             >
-              Forgot your password?
+              Create an Account
             </a>
-            <Link href="/register">
-              <a
-                onClick={() => dispatch(overlay(null))}
-                className="btn-border w-[100%] my-10 text-14 font-semibold mt-30"
-              >
-                Create an Account
-              </a>
-            </Link>
-          </div>
+          </Link>
         </form>
       </OverlayMenu>
     </div>

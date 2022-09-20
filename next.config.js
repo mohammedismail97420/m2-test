@@ -1,27 +1,41 @@
 /* @type {import('next').NextConfig} */
 
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
 
   images: {
-    domains: ["picsum.photos", "xtwostore-ae01a.web.app", "i.ibb.co", "ibb.co"],
+    domains: [
+      "picsum.photos",
+      "xtwostore-ae01a.web.app",
+      "i.ibb.co",
+      "ibb.co",
+      "dummyimage.com",
+      "media.xtwostore.de",
+    ],
   },
 
-  localeDetection: false,
-
   i18n: {
-    locales: ["en", "de"],
-    defaultLocale: "en",
+    locales: ["en_GB", "de_DE", "fr_FR", "zh_CN"],
+    defaultLocale: "en_GB",
     localeDetection: false,
+
     domains: [
       {
-        domain: "xtwostore.com",
-        defaultLocale: "en",
+        domain: "xtwostore-dev.de",
+        defaultLocale: "de_DE",
       },
       {
-        domain: "xtwostore.de",
-        defaultLocale: "de",
+        domain: "xtwostore-dev.fr",
+        defaultLocale: "fr_FR",
+      },
+      {
+        domain: "xtwostore-dev.cn",
+        defaultLocale: "zh_CN",
+      },
+      {
+        domain: "xtwostore-dev.cz",
+        defaultLocale: "en_GB",
       },
     ],
   },
@@ -30,7 +44,7 @@ module.exports = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://m2.xtwodev.store/rest/:path*",
+        destination: "https://m2.xtwodev.store/rest/:path*",
       },
     ];
   },

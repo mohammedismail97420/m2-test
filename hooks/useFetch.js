@@ -1,28 +1,17 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { getCookie } from "cookies-next";
 
 export default function useFetch(method, url, headers = null, { immediate }) {
   const [res, setRes] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const token =
-    typeof window !== "undefined" && window.atob(getCookie("_SYS_ADMIN_AUTH"));
-
-  const config =
-    headers === "token"
-      ? {
-          Authorization: `Bearer ${token}`,
-        }
-      : headers;
-
   const executeFetch = useCallback(
     async (body) => {
       setLoading(true);
       setRes(null);
       setError(null);
-      axios({ method, url, data: body, headers: config })
+      axios({ method, url, data: body, headers })
         .then((response) => {
           setLoading(false);
           setRes(response);

@@ -116,7 +116,6 @@ const Register = () => {
     if (res?.status === 200) {
       router.push("/");
       dispatch(overlay("signIn"));
-      alert("Registration successful");
     }
   }, [res]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -155,9 +154,7 @@ const Register = () => {
           <div className="ml-14">
             <label className="relative font-medium text-14 w-auto" htmlFor="">
               Required Fields
-              <span className="absolute -left-16 -top-8 text-36 text-red">
-                *
-              </span>
+              <span className="absolute -left-8 -top-5 text-26">*</span>
             </label>
           </div>
           <form
@@ -172,9 +169,7 @@ const Register = () => {
                     htmlFor=""
                   >
                     Please Select:
-                    <span className="absolute -right-16 -top-8 text-36 text-red">
-                      *
-                    </span>
+                    <span className="absolute -right-8 -top-5 text-22">*</span>
                   </label>
                 </div>
                 <div className="grid grid-cols-2 justify-between gap-20 col-span-2">
@@ -220,13 +215,13 @@ const Register = () => {
                         htmlFor="firstName"
                       >
                         First Name
-                        <span className="absolute -right-16 -top-8 text-36 text-red">
+                        <span className="absolute -right-8 -top-5 text-22">
                           *
                         </span>
                       </label>
                     </div>
                     <input
-                      className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                      className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
                       type="text"
                       required
                       name="firstName"
@@ -254,7 +249,7 @@ const Register = () => {
                           </label>
                         </div>
                         <input
-                          className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                          className="px-10 py-9 bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
                           type="text"
                           name="middleName"
                           autoComplete="off"
@@ -267,13 +262,13 @@ const Register = () => {
                             htmlFor="lastName"
                           >
                             Last Name
-                            <span className="absolute -right-16 -top-10 text-36 text-red">
+                            <span className="absolute -right-8 -top-5 text-22">
                               *
                             </span>
                           </label>
                         </div>
                         <input
-                          className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                          className="px-10 py-9 bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
                           type="text"
                           required
                           name="lastName"
@@ -295,13 +290,13 @@ const Register = () => {
                         htmlFor="email"
                       >
                         Email Address
-                        <span className="absolute -right-16 -top-8 text-36 text-red">
+                        <span className="absolute -right-8 -top-5 text-22">
                           *
                         </span>
                       </label>
                     </div>
                     <input
-                      className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                      className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                       type="email"
                       pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                       required
@@ -322,13 +317,13 @@ const Register = () => {
                         htmlFor="mobile"
                       >
                         Mobile Number
-                        <span className="absolute -right-16 -top-8 text-36 text-red">
+                        <span className="absolute -right-8 -top-5 text-22">
                           *
                         </span>
                       </label>
                     </div>
                     <input
-                      className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                      className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                       type="text"
                       required
                       name="tel"
@@ -342,14 +337,14 @@ const Register = () => {
                         htmlFor="password"
                       >
                         Password
-                        <span className="absolute -right-16 -top-8 text-36 text-red">
+                        <span className="absolute -right-8 -top-5 text-22">
                           *
                         </span>
                       </label>
                     </div>
                     <div className="relative">
                       <input
-                        className={`px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm w-[100%]`}
+                        className={`bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md`}
                         type={showPassword ? "text" : "password"}
                         name="password"
                         id="password"
@@ -429,15 +424,15 @@ const Register = () => {
                         htmlFor="confirmPassword"
                       >
                         Confirm Password
-                        <span className="absolute -right-16 -top-8 text-36 text-red">
+                        <span className="absolute -right-8 -top-5 text-22">
                           *
                         </span>
                       </label>
                     </div>
                     <input
-                      className={`px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm ${
+                      className={`bg-inputBg border-[1.5px] rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md ${
                         passwordValid.didMatch
-                          ? "border-darkgray"
+                          ? "border-inputBorder"
                           : "border-red"
                       }`}
                       type="password"
@@ -467,13 +462,13 @@ const Register = () => {
                           htmlFor="firstName"
                         >
                           First Name
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                         type="text"
                         required
                       />
@@ -492,7 +487,7 @@ const Register = () => {
                           </label>
                         </div>
                         <input
-                          className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                          className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                           type="text"
                         />
                       </div>
@@ -503,13 +498,13 @@ const Register = () => {
                             htmlFor="lastName"
                           >
                             Last Name
-                            <span className="absolute -right-16 -top-10 text-36 text-red">
+                            <span className="absolute -right-8 -top-5 text-22">
                               *
                             </span>
                           </label>
                         </div>
                         <input
-                          className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                          className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                           type="text"
                           required
                         />
@@ -522,13 +517,13 @@ const Register = () => {
                           htmlFor="email"
                         >
                           Email Address
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                         type="email"
                         pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                         required
@@ -541,13 +536,13 @@ const Register = () => {
                           htmlFor="mobile"
                         >
                           Mobile Number
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                         type="text"
                         required
                         name="phone"
@@ -560,14 +555,14 @@ const Register = () => {
                           htmlFor="password"
                         >
                           Password
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <div className="relative">
                         <input
-                          className={`px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm w-[100%]`}
+                          className={`bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md`}
                           type={showPassword ? "text" : "password"}
                           name="password"
                           id="password"
@@ -641,13 +636,13 @@ const Register = () => {
                           htmlFor="confirmPassword"
                         >
                           Confirm Password
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className={`px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm ${
+                        className={`bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md ${
                           formAttributes.password.length > 0 &&
                           formAttributes.confirmPassword.length >=
                             formAttributes.password.length &&
@@ -679,13 +674,13 @@ const Register = () => {
                           htmlFor="firstName"
                         >
                           Company
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                         type="text"
                         required
                       />
@@ -697,13 +692,13 @@ const Register = () => {
                           htmlFor="email"
                         >
                           Mobile / telephone number
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                         type="text"
                         required
                       />
@@ -715,13 +710,13 @@ const Register = () => {
                           htmlFor="mobile"
                         >
                           House number and street name
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                         type="text"
                         required
                       />
@@ -733,13 +728,13 @@ const Register = () => {
                           htmlFor="mobile"
                         >
                           Street address 2
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <input
-                        className="px-10 py-9 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-9 w-[100%] shadow-sm focus:shadow-md"
                         type="text"
                         required
                       />
@@ -751,13 +746,13 @@ const Register = () => {
                           htmlFor="mobile"
                         >
                           State / Province
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <select
-                        className="px-10 py-10 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
                         name="state"
                         id="state"
                       >
@@ -774,13 +769,13 @@ const Register = () => {
                           htmlFor="mobile"
                         >
                           Country
-                          <span className="absolute -right-16 -top-8 text-36 text-red">
+                          <span className="absolute -right-8 -top-5 text-22">
                             *
                           </span>
                         </label>
                       </div>
                       <select
-                        className="px-10 py-10 border border-darkgray text-14 outline-none mt-5 bg-cardBg rounded-sm"
+                        className="bg-inputBg border-[1.5px] border-inputBorder rounded-[4px] outline-none text-14 p-10 w-[100%] shadow-sm focus:shadow-md"
                         name="country"
                         id="country"
                         defaultValue="country1"
@@ -823,7 +818,7 @@ const Register = () => {
                 <button
                   // disabled={formVerified}
                   type="submit"
-                  className="btn w-[100%] rounded-sm uppercase disabled:opacity-[0.6] disabled:cursor-not-allowed"
+                  className="btn w-[100%] rounded-[4px] uppercase disabled:opacity-[0.6] disabled:cursor-not-allowed"
                 >
                   {loading ? "registering..." : "create an account"}
                 </button>
